@@ -10,7 +10,7 @@
     - k8s-installation
 
 - name: Initialize k8s master
-  hosts: master
+  hosts: k8s-m01
   gather_facts: false
   become: true
   roles:

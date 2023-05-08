@@ -2,12 +2,12 @@
 # vi: set ft=ruby :
 
 masters = {
-  "master" => { :ip => "192.168.56.10", :cpus => 2, :mem => 2048 },
+  "k8s-m01" => { :ip => "192.168.56.10", :cpus => 2, :mem => 2048 },
 }
 
 workers = {
-  "worker1" => { :ip => "192.168.56.20", :cpus => 1, :mem => 1024 },
-  "worker2" => { :ip => "192.168.56.21", :cpus => 1, :mem => 1024 },
+  "k8s-w01" => { :ip => "192.168.56.20", :cpus => 1, :mem => 1024 },
+  "k8s-w02" => { :ip => "192.168.56.21", :cpus => 1, :mem => 1024 },
 }
  
 Vagrant.configure(2) do |config|

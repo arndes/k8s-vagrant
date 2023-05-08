@@ -35,10 +35,12 @@ Vagrant.configure(2) do |config|
         vb.name = hostname
         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on"]
       end
-      master.vm.provision "file", source: "./provision/ansible", destination: "/home/vagrant/ansible"
-      master.vm.provision "shell", path: "./provision/master.sh"
+      master.vm.synced_folder "provisioning/", "/vagrant"
+      master.vm.provision :ansible_local, run: "always" do |ansible|
+        ansible.playbook = "playbook.yml"
+        ansible.limit = "all"
+        ansible.inventory_path = "hosts.yml"
+      end
     end
   end
-
 end
-

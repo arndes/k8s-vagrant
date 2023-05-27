@@ -6,8 +6,8 @@ masters = {
 }
 
 workers = {
-  "k8s-w01" => { :ip => "192.168.56.20", :cpus => 1, :mem => 1024 },
-  "k8s-w02" => { :ip => "192.168.56.21", :cpus => 1, :mem => 1024 },
+  "k8s-w01" => { :ip => "192.168.56.20", :cpus => 2, :mem => 2048 },
+  "k8s-w02" => { :ip => "192.168.56.21", :cpus => 2, :mem => 2048 },
 }
  
 Vagrant.configure(2) do |config|
@@ -35,8 +35,8 @@ Vagrant.configure(2) do |config|
         vb.name = hostname
         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on"]
       end
-      master.vm.provision "file", run: "always", source: "./provisioning", destination: "/home/vagrant/ansible"
-      master.vm.provision "shell", run: "always", path: "./provisioning/master.sh"
+      master.vm.provision "file", source: "./provisioning", destination: "/home/vagrant/ansible"
+      master.vm.provision "shell", path: "./provisioning/master.sh"
     end
   end
 end

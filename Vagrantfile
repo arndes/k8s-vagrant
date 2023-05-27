@@ -35,6 +35,7 @@ Vagrant.configure(2) do |config|
         vb.name = hostname
         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on"]
       end
+      master.vm.provision "file", source: "./k8s-admin", destination: "/home/vagrant/k8s-admin"
       master.vm.provision "file", source: "./provisioning", destination: "/home/vagrant/ansible"
       master.vm.provision "shell", path: "./provisioning/master.sh"
     end
